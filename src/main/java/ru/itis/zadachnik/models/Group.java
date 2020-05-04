@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 @Table(name = "s_group")
 public class Group {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.zadachnik.enums.CommunicationLanguage;
+import ru.itis.zadachnik.enums.ProblemTopic;
 import ru.itis.zadachnik.enums.ProgrammingLanguage;
+import ru.itis.zadachnik.enums.Source;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,16 +29,18 @@ public class Problem {
     @Enumerated(EnumType.STRING)
     private CommunicationLanguage commLanguage;
 
+    @Enumerated(EnumType.STRING)
+    private Source source;
+
     private String text;
 
     @OneToMany(mappedBy = "problem")
     private List<Solution> solutions;
 
-    @ManyToMany
-    @JoinTable(
-            name = "topic_problem",
-            joinColumns = @JoinColumn(name = "problem_id"),
-            inverseJoinColumns = @JoinColumn(name = "topic_id"))
-    private List<Topic> topics;
+    @ElementCollection(targetClass=ProblemTopic.class)
+    @Enumerated(EnumType.STRING) // Possibly optional (I'm not sure) but defaults to ORDINAL.
+    @CollectionTable(name="problem_topic")
+    @Column(name="topic") // Column name in person_interest
+    private List<ProblemTopic> topics;
 
 }
