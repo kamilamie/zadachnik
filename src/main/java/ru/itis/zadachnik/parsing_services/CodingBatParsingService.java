@@ -6,14 +6,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.itis.zadachnik.enums.CommunicationLanguage;
-import ru.itis.zadachnik.enums.ProgrammingLanguage;
-import ru.itis.zadachnik.enums.Source;
+import ru.itis.zadachnik.enums.*;
 import ru.itis.zadachnik.models.Problem;
+import ru.itis.zadachnik.parsing_services.tools.TextAnalyzer;
 import ru.itis.zadachnik.repositories.ProblemsRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CodingBatParsingService {
@@ -40,15 +40,19 @@ public class CodingBatParsingService {
         Document categoriesPage = Jsoup.connect(BASE_URL + lang).get();
         List<Element> categories = categoriesPage.select("a[href^='/" + lang + "/']");
 
+
         for (Element c : categories) {
+            String category = c.attr("href");
+
             Document problems_page = Jsoup.connect(c.attr("abs:href")).get();
             List<Element> problems = problems_page.select("a[href^='/prob/']");
 
             for (Element p : problems) {
                 Problem problem = fillProblem(p);
                 problem.setProgrLanguage(lang);
+                problem.setTopics(fillTopics(category, problem.getText()));
+                problem.setDifficulty(fillDifficulty(category));
                 problemsRepository.save(problem);
-                System.out.println(problemsRepository.findAll().get(0).getText());
             }
         }
     }
@@ -60,12 +64,32 @@ public class CodingBatParsingService {
         for (TextNode textNode : textNodes) {
             problemText.append("<br>").append(textNode.text());
         }
-        //TODO: check problemText for TOPICS and fill them
         return Problem.builder()
                 .commLanguage(COMM_LANG)
                 .source(SOURCE)
                 .text(problemText.toString())
                 .build();
     }
+
+    private List<ProblemTopic> fillTopics(String category, String text){
+        List<ProblemTopic> topics = TextAnalyzer.analyze(category);
+        topics.addAll(TextAnalyzer.analyze(text));
+        if (topics.isEmpty()){
+            topics.add(ProblemTopic.BASIC);
+        }
+        return topics.stream().distinct().collect(Collectors.toList());
+    }
+
+    private Difficulty fillDifficulty(String category){
+        if (category.contains("1")){
+            return Difficulty.EASY;
+        } else if (category.contains("2")){
+            return Difficulty.MEDIUM;
+        } else if (category.contains("3")){
+            return Difficulty.HARD;
+        }
+        return Difficulty.EASY;
+    }
+
 
 }

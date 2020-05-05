@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.itis.zadachnik.enums.CommunicationLanguage;
-import ru.itis.zadachnik.enums.ProblemTopic;
-import ru.itis.zadachnik.enums.ProgrammingLanguage;
-import ru.itis.zadachnik.enums.Source;
+import ru.itis.zadachnik.enums.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,6 +28,9 @@ public class Problem {
 
     @Enumerated(EnumType.STRING)
     private Source source;
+
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
 
     private String text;
 
