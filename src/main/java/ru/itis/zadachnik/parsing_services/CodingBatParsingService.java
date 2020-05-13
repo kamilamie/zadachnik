@@ -38,16 +38,14 @@ public class CodingBatParsingService {
 
     private void getProblemsListByLanguage(ProgrammingLanguage lang) throws IOException {
         Document categoriesPage = Jsoup.connect(BASE_URL + lang).get();
-        List<Element> categories = categoriesPage.select("a[href^='/" + lang + "/']");
+        List<Element> categoriesLinks = categoriesPage.select("a[href^='/" + lang + "/']");
 
-
-        for (Element c : categories) {
+        for (Element c : categoriesLinks) {
             String category = c.attr("href");
+            Document problemsPage = Jsoup.connect(c.attr("abs:href")).get();
+            List<Element> problemsLinks = problemsPage.select("a[href^='/prob/']");
 
-            Document problems_page = Jsoup.connect(c.attr("abs:href")).get();
-            List<Element> problems = problems_page.select("a[href^='/prob/']");
-
-            for (Element p : problems) {
+            for (Element p : problemsLinks) {
                 Problem problem = fillProblem(p);
                 problem.setProgrLanguage(lang);
                 problem.setTopics(fillTopics(category, problem.getText()));
@@ -57,10 +55,10 @@ public class CodingBatParsingService {
         }
     }
 
-    private Problem fillProblem(Element problem) throws IOException {
-        Document problem_page = Jsoup.connect(problem.attr("abs:href")).get();
-        StringBuilder problemText = new StringBuilder(problem_page.select("p[class=\"max2\"]").get(0).text());
-        List<TextNode> textNodes = problem_page.select("div > div > table > tbody > tr > td:nth-child(1)").get(0).textNodes();
+    private Problem fillProblem(Element problemLink) throws IOException {
+        Document problemPage = Jsoup.connect(problemLink.attr("abs:href")).get();
+        StringBuilder problemText = new StringBuilder(problemPage.select("p[class=\"max2\"]").get(0).text());
+        List<TextNode> textNodes = problemPage.select("div > div > table > tbody > tr > td:nth-child(1)").get(0).textNodes();
         for (TextNode textNode : textNodes) {
             problemText.append("<br>").append(textNode.text());
         }
@@ -71,11 +69,11 @@ public class CodingBatParsingService {
                 .build();
     }
 
-    private List<ProblemTopic> fillTopics(String category, String text){
-        List<ProblemTopic> topics = TextAnalyzer.analyze(category);
+    private List<Topic> fillTopics(String category, String text){
+        List<Topic> topics = TextAnalyzer.analyze(category);
         topics.addAll(TextAnalyzer.analyze(text));
         if (topics.isEmpty()){
-            topics.add(ProblemTopic.BASIC);
+            topics.add(Topic.BASIC);
         }
         return topics.stream().distinct().collect(Collectors.toList());
     }

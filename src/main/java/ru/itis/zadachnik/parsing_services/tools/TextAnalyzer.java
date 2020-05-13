@@ -1,18 +1,17 @@
 package ru.itis.zadachnik.parsing_services.tools;
 
-import ru.itis.zadachnik.enums.ProblemTopic;
+import ru.itis.zadachnik.enums.Topic;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TextAnalyzer {
-    public static List<ProblemTopic> analyze(String problemText) {
-        List<ProblemTopic> problemTopics = new ArrayList<>();
-        for (ProblemTopic topic : ProblemTopic.values()) {
+    public static List<Topic> analyze(String problemText) {
+        List<Topic> topics = new ArrayList<>();
+        for (Topic topic : Topic.values()) {
             if (problemText.toLowerCase().contains(topic.toString().toLowerCase()))
-                problemTopics.add(topic);
-
+                topics.add(topic);
         }
-        return problemTopics;
+        return topics;
     }
 }

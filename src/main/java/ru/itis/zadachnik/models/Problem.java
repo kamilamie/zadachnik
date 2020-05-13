@@ -37,10 +37,10 @@ public class Problem {
     @OneToMany(mappedBy = "problem")
     private List<Solution> solutions;
 
-    @ElementCollection(targetClass=ProblemTopic.class)
+    @ElementCollection(targetClass = Topic.class)
     @Enumerated(EnumType.STRING) // Possibly optional (I'm not sure) but defaults to ORDINAL.
-    @CollectionTable(name="problem_topic")
-    @Column(name="topic") // Column name in person_interest
-    private List<ProblemTopic> topics;
+    @CollectionTable(name = "problem_topic")
+    @Column(name = "topic") // Column name in person_interest
+    private List<Topic> topics;
 
 }
