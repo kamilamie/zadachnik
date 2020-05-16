@@ -70,8 +70,8 @@ public class CodingBatParsingService {
     }
 
     private List<Topic> fillTopics(String category, String text){
-        List<Topic> topics = TextAnalyzer.analyze(category);
-        topics.addAll(TextAnalyzer.analyze(text));
+        List<Topic> topics = TextAnalyzer.detectTopics(category);
+        topics.addAll(TextAnalyzer.detectTopics(text));
         if (topics.isEmpty()){
             topics.add(Topic.BASIC);
         }
