@@ -1,0 +1,131 @@
+/* FONTS //////////////////////////////////////////////////////*/
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/poppins/Poppins-Bold.ttf');
+}
+@font-face {
+    font-family: Poppins-Extra-Light;
+    src: url('../fonts/poppins/Poppins-ExtraLight.ttf');
+}
+@font-face {
+    font-family: Poppins-Light;
+    src: url("../fonts/poppins/Poppins-Light.ttf");
+}
+
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url('../fonts/poppins/Poppins-SemiBold.ttf');
+}
+
+.poppins-bold {
+    font-family: Poppins-Bold, sans-serif;
+}
+
+.poppins-regular {
+    font-family: Poppins-Regular, sans-serif;
+}
+
+.poppins-extra-light {
+    font-family: Poppins-Extra-Light, sans-serif;
+}
+.poppins-light{
+    font-family: Poppins-Light, sans-serif;
+}
+
+/* SIGN UP PAGE ///////////////////////////////////////////*/
+.pic-v-center {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-top: -250px; /* Half the height */
+    margin-left: -250px; /* Half the width */
+}
+
+/* LOGIN PAGE ///////////////////////////////////////////*/
+
+.btn-show-pass {
+    font-size: 15px;
+    color: #999999;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.btn-show-pass:hover {
+    color: #17a2b8;
+}
+
+.btn-show-pass.active {
+    color: #17a2b8;
+}
+
+/* PROFILE PAGE ///////////////////////////////////////////*/
+
+.round-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* Радиус скругления */
+    border: 5px solid white; /* Параметры рамки */
+    object-fit: cover;
+    vertical-align: middle;
+}
+.round-img-sm{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Радиус скругления */
+    border: 3px solid white; /* Параметры рамки */
+    object-fit: cover;
+    vertical-align: middle;
+}
+.round-img-xs{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Радиус скругления */
+    border: 2px solid white; /* Параметры рамки */
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+/* EDIT PROFILE PAGE ///////////////////////////////////////////*/
+.list-group .active {
+    border-color: transparent;
+    border-left: 2px solid black;
+    font-family: Poppins-Medium;
+    background-color: white;
+    color: black;
+}
+.b-color-trans{
+    border-color: transparent;
+}
+.round-img-md{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Радиус скругления */
+    border: 3px solid white; /* Параметры рамки */
+    object-fit: cover;
+    vertical-align: middle;
+}

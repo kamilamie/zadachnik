@@ -27,7 +27,7 @@ public class Solution {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Student author;
+    private User author;
 
     @ManyToOne
     @JoinColumn(name = "problem_id")

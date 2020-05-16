@@ -23,5 +23,5 @@ public class Group {
     private String name;
 
     @OneToMany(mappedBy = "group")
-    private List<Student> students;
+    private List<User> users;
 }
