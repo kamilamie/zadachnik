@@ -42,9 +42,9 @@
                         <div class="form-group">
                             <select class="form-control" id="group" name="group">
                                 <option selected>Select group...</option>
-                                <option value="11-701">11-701</option>
-                                <option value="11-702">11-702</option>
-                                <option value="11-703">11-703</option>
+                                <#list groups as group>
+                                    <option value="${group.name}">${group.name}</option>
+                                </#list>
                             </select>
                         </div>
                         <div class="text-center" style="position: relative">

@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.itis.zadachnik.services.GroupService;
 import ru.itis.zadachnik.services.UserService;
 
 
@@ -19,8 +20,12 @@ public class SignUpController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GroupService groupService;
+
     @GetMapping("/signUp")
-    public String getSignUpPage() {
+    public String getSignUpPage(ModelMap modelMap) {
+        modelMap.addAttribute("groups", groupService.getAllGroups());
         return "signUp";
     }
 
