@@ -21,10 +21,11 @@
             ${problem.text}
         </p>
         <br>
-        <form>
+        <form method="post" action="/problems/${problem.id}">
             <div class="form-group">
-                <label for="solutionText">Solution</label>
-                <textarea class="form-control" id="solutionText" rows="5"
+                <label for="solution">Solution</label>
+                <textarea class="form-control" id="solution" rows="5"
+                          name="solution"
                           placeholder="Write your decision here or insert a link to your repository"></textarea>
             </div>
             <button type="submit" class="btn btn-info left-pill">Submit</button>
