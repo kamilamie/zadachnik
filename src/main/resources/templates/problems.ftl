@@ -36,7 +36,8 @@
             <#list problems as problem>
                 <tr>
                     <td>${problem.id}</td>
-                    <td>${problem.text[0..*36]}...</td>
+                    <td>
+                        <a style="color: black" href="/problems/${problem.id}">${problem.text[0..*36]}...</a></td>
                     <td>${problem.difficulty}</td>
                     <td>${problem.progrLanguage}</td>
                     <td>${problem.commLanguage}</td>
