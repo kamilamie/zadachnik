@@ -18,35 +18,36 @@
         <br>
     </div>
 
-
-    <table class="table table-hover rounded bg-white shadow"  data-toggle="table" data-filter-control="true"
-           data-side-pagination="client" data-page-size="100" data-page-list="[100, 200, ALL]">
-        <thead>
-        <tr class="table-info">
-            <th scope="col" data-sortable="true">#</th>
-            <th scope="col" data-filter-control="input" data-field="text">Text</th>
-            <th scope="col" data-filter-control="select" data-field="diffic">Difficulty</th>
-            <th scope="col" data-filter-control="select" data-field="progr">Progr_lang</th>
-            <th scope="col" data-filter-control="select" data-field="comm">Comm_lang</th>
-            <th scope="col" data-filter-control="select" data-field="source">Source</th>
-            <th scope="col" data-filter-control="select" data-field="topics">Topic</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <#list problems as problem>
-            <tr>
-                <td>${problem.id}</td>
-                <td>${problem.text[0..*36]}...</td>
-                <td>${problem.difficulty}</td>
-                <td>${problem.progrLanguage}</td>
-                <td>${problem.commLanguage}</td>
-                <td>${problem.source}</td>
-                <td>${problem.topics[0].name()}</td>
+    <div class="shadow">
+        <table class="table table-no-bordered bg-white"  data-toggle="table" data-filter-control="true">
+            <thead>
+            <tr class="table-info">
+                <th scope="col" data-sortable="true">#</th>
+                <th scope="col" data-filter-control="input" data-field="text">Text</th>
+                <th scope="col" data-filter-control="select" data-field="diffic">Difficulty</th>
+                <th scope="col" data-filter-control="select" data-field="progr">Progr_lang</th>
+                <th scope="col" data-filter-control="select" data-field="comm">Comm_lang</th>
+                <th scope="col" data-filter-control="select" data-field="source">Source</th>
+                <th scope="col" data-filter-control="select" data-field="topics">Topic</th>
             </tr>
-        </#list>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+
+            <#list problems as problem>
+                <tr>
+                    <td>${problem.id}</td>
+                    <td>${problem.text[0..*36]}...</td>
+                    <td>${problem.difficulty}</td>
+                    <td>${problem.progrLanguage}</td>
+                    <td>${problem.commLanguage}</td>
+                    <td>${problem.source}</td>
+                    <td>${problem.topics[0].name()}</td>
+                </tr>
+            </#list>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 <script src="https://unpkg.com/bootstrap-table@1.8.1/dist/bootstrap-table.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.8.1/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
