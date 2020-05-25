@@ -31,6 +31,9 @@ public class User {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @OneToMany(mappedBy = "author")
-    private List<Solution> solutions;
+    @OneToMany(mappedBy = "student")
+    private List<Assignment> studentAssignments;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Assignment> teacherAssignments;
 }

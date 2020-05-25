@@ -34,13 +34,13 @@ public class Problem {
 
     private String text;
 
-    @OneToMany(mappedBy = "problem")
-    private List<Solution> solutions;
-
     @ElementCollection(targetClass = Topic.class)
     @Enumerated(EnumType.STRING) // Possibly optional (I'm not sure) but defaults to ORDINAL.
     @CollectionTable(name = "problem_topic")
     @Column(name = "topic") // Column name in person_interest
     private List<Topic> topics;
+
+    @ManyToMany(mappedBy = "problems")
+    private List<Assignment> assignments;
 
 }
