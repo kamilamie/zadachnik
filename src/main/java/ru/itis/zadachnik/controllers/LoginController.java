@@ -13,7 +13,7 @@ public class LoginController {
     @GetMapping("/login")
     public String getLoginPage(Authentication authentication, ModelMap model, HttpServletRequest request) {
         if (authentication != null) {
-            return "redirect:/profile";
+            return "redirect:/problems";
         }
         if (request.getParameterMap().containsKey("error")) {
             model.addAttribute("error", true);

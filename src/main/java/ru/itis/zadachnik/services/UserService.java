@@ -44,7 +44,7 @@ public class UserService {
                 .login(form.getLogin())
                 .password(hashPassword)
                 .group(group)
-                .role(Role.STUDENT)
+                .role(Role.valueOf(form.getRole()))
                 .build();
         userRepository.save(user);
     }

@@ -16,4 +16,5 @@ public class UserRegisterForm {
     private String login;
     private String password;
     private String group;
+    private String role = "STUDENT";
 }

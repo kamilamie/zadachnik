@@ -27,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    SecurityHandler successHandler;
+
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -47,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .usernameParameter("login")
-                .defaultSuccessUrl("/problems")
+                .successHandler(successHandler)
                 .loginPage("/login");
 
     }
