@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="/css/util.css">
-    <#--    <link type="text/css" rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">-->
+    <link type="text/css" rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body class="poppins-regular bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white">
     <div class="container">
         <a class="navbar-brand" href="/problems">Zadachnik</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,7 +22,7 @@
                     <a class="nav-link" href="/problems">Problems<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Something</a>
+                    <a class="nav-link" href="/assignments">Assignments</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -33,14 +33,18 @@
                         <a class="dropdown-item" href="#">Info</a>
                         <a class="dropdown-item" href="/assignments">Assignments</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item drop" href="/logout">Exit</a>
+                        <a class="dropdown-item drop" href="/logout">Exit <span class="fa fa-sign-out-alt"> </span></a>
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <#if role?? && role=="TEACHER">
+                <div id="newAssignButton" hidden>
+                    <button type="button" onclick="collectCheckedProblems()" class="btn btn-outline-dark" data-toggle="modal" data-target="#newAssignModal">
+                        <span class="fa fa-plus-circle"></span> New assignment
+                    </button>
+                </div>
+                <br>
+            </#if>
         </div>
     </div>
 </nav>

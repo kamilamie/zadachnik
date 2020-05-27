@@ -57,6 +57,10 @@ public class UserService {
         return Optional.empty();
     }
 
+    public List<User> getAllStudents(){
+        return userRepository.findAllByRole(Role.STUDENT);
+    }
+
     public boolean loginIsUnique(String login) {
         return !userRepository.findOneByLogin(login).isPresent();
     }

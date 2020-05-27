@@ -39,7 +39,7 @@ public class Assignment {
 
     private Date completion;
 
-    private Integer score;
+    private Integer attempts;
 
     @ManyToMany
     @JoinTable(

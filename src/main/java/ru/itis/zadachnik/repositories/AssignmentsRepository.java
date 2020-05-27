@@ -10,4 +10,5 @@ import java.util.List;
 public interface AssignmentsRepository extends JpaRepository <Assignment, Long> {
 
     List<Assignment> findAllByStudent_id(Long id);
+    List<Assignment> findAllByTeacher_id(Long id);
 }
