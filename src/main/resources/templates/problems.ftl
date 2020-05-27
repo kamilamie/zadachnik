@@ -18,7 +18,7 @@
         <br>
     </div>
 
-    <!-- Modal -->
+    <!--New Assignment Modal -->
     <div class="modal fade" id="newAssignModal" tabindex="-1" role="dialog" aria-labelledby="newAssignModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -64,13 +64,78 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" id="saveAssignButton" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <!--New Problem Modal -->
+    <div class="modal fade" id="newProblemModal" tabindex="-1" role="dialog" aria-labelledby="newProblemModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="post" action="/addProblem">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newProblemModalLabel">New Problem</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="problemText">Add text of the problem </label>
+                            <textarea id="problemText" name="problemText" required class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="progrLang">Choose programming/markup language</label>
+                            <select class="form-control" id="progrLang" name="progrLang">
+                                <option value="" selected>not selected</option>
+                                <option value="ANY">ANY</option>
+                                <option value="JAVA">JAVA</option>
+                                <option value="PYTHON">PYTHON</option>
+                                <option value="C">C</option>
+                                <option value="JS">JS</option>
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="commLang">Choose communication language</label>
+                            <select class="form-control" id="commLang" name="commLang">
+                                <option value="" selected>not selected</option>
+                                <option value="RUSSIAN">RUSSIAN</option>
+                                <option value="ENGLISH">ENGLISH</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="difficulty">Choose difficulty</label>
+                            <select class="form-control" id="difficulty" name="difficulty">
+                                <option value="" selected>not selected</option>
+                                <option value="EASY">EASY</option>
+                                <option value="MEDIUM">MEDIUM</option>
+                                <option value="HARD">HARD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="topics">Choose topic(s)</label>
+                            <select class="form-control" id="topics" name="topics">
+                                <option value="" selected>not selected</option>
+                                <#list topics as topic>
+                                    <option value="${topic.name()}">${topic.name()}</option>
+                                </#list>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit"class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="shadow">
         <table class="table table-no-bordered bg-white text-center"  data-toggle="table" data-filter-control="true">
@@ -98,7 +163,7 @@
                         </#if>
                         <td>${problem.id}</td>
                         <td>
-                            <a style="color: black" href="/problems/${problem.id}">${problem.text[0..*36]}...</a></td>
+                            <a style="color: black" target="_blank" href="/problems/${problem.id}">${problem.text[0..*36]}...</a></td>
                         <td>${problem.difficulty}</td>
                         <td>${problem.progrLanguage}</td>
                         <td>${problem.commLanguage}</td>
@@ -125,6 +190,11 @@
             selected.push($(this).attr('name'));
         });
         document.getElementById("problemsAmount").innerText = selected.length;
+        if (selected.length == 0){
+            document.getElementById('saveAssignButton').disabled = true;
+        } else {
+            document.getElementById('saveAssignButton').disabled = false;
+        }
         var ids = selected.join(',');
         document.getElementById("problemsIds").setAttribute('value', ids);
     }

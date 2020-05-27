@@ -38,9 +38,12 @@
                 </li>
             </ul>
             <#if role?? && role=="TEACHER">
-                <div id="newAssignButton" hidden>
+                <div id="newAssignButton" class="btn-group-sm" hidden>
                     <button type="button" onclick="collectCheckedProblems()" class="btn btn-outline-dark" data-toggle="modal" data-target="#newAssignModal">
-                        <span class="fa fa-plus-circle"></span> New assignment
+                        <span class="fa fa-list-ol"></span> New assignment
+                    </button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#newProblemModal">
+                        <span class="fa fa-plus"></span> New problem
                     </button>
                 </div>
                 <br>

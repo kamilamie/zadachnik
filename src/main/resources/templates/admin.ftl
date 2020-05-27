@@ -39,6 +39,9 @@
                 </div>
                 <div class="text-center" style="position: relative">
                     <button type="submit" class="btn btn-dark col-sm-6 mt-4">SIGN UP</button>
+                    <div class="mt-3">
+                        <a href="/logout">logout</a>
+                    </div>
                     <#if errors??>
                         <span class="fa fa-exclamation ml-2" data-toggle="tooltip" data-placement="right"
                               title="
