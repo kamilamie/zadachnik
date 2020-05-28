@@ -38,7 +38,7 @@ public class CodingBatParsingService {
 
     private void getProblemsListByLanguage(ProgrammingLanguage lang) throws IOException {
         Document categoriesPage = Jsoup.connect(BASE_URL + lang).get();
-        List<Element> categoriesLinks = categoriesPage.select("a[href^='/" + lang + "/']");
+            List<Element> categoriesLinks = categoriesPage.select("a[href^='/" + lang + "/']");
 
         for (Element c : categoriesLinks) {
             String category = c.attr("href");
