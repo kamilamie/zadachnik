@@ -59,10 +59,14 @@ public class LeetCodeParsingTest {
 
     @Test
     public void launchLeetCodeParsing() {
-        getProblemsByTopic("array");
-//        getProblemsByTopic("sort");
-//        getProblemsByTopic("recursion");
-//        getProblemsByTopic("graph");
+//        getProblemsByTopic("array");
+//        getProblemsByTopic("string");
+        getProblemsByTopic("sort");
+        getProblemsByTopic("recursion");
+        getProblemsByTopic("graph");
+        getProblemsByTopic("stack");
+        getProblemsByTopic("queue");
+
     }
 
     public void getProblemsByTopic(String topic) {
@@ -78,10 +82,15 @@ public class LeetCodeParsingTest {
     public void fillProblems(List<String> paths, String topic) {
         for (String s : paths) {
             driver.get(s);
-            WebElement pTextElement = driver.findElement(By.cssSelector("div.content__u3I1"));
-            WebElement pDifficulty = driver.findElement(By.cssSelector("div[diff]"));
-            leetCodeParsingService.saveProblem(pTextElement.getAttribute("innerHTML"), Topic.valueOf(topic.toUpperCase()),
-                    Difficulty.valueOf(pDifficulty.getText().toUpperCase()));
+            String curr_url = driver.getCurrentUrl();
+            if (curr_url.contains("/accounts/login")) {
+                System.out.println("need login");
+            } else {
+                WebElement pTextElement = driver.findElement(By.cssSelector("div.content__u3I1"));
+                WebElement pDifficulty = driver.findElement(By.cssSelector("div[diff]"));
+                leetCodeParsingService.saveProblem(pTextElement.getAttribute("innerHTML"), Topic.valueOf(topic.toUpperCase()),
+                        Difficulty.valueOf(pDifficulty.getText().toUpperCase()));
+            }
         }
     }
 }
