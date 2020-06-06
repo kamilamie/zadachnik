@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div class="container col-sm-9">
+<div class="container col-sm-8">
 
     <div class="mt-4">
         <#if assignments??>
@@ -21,9 +21,12 @@
                     <thead>
                     <tr class="table-info">
                         <th scope="col">Title</th>
+                        <#if role?? && role == "TEACHER">
                         <th scope="col" data-filter-control="input" data-field="student">Student</th>
                         <th scope="col" data-filter-control="select" data-field="group">Group</th>
+                        <#else>
                         <th scope="col" data-filter-control="input" data-field="teacher">Teacher</th>
+                        </#if>
                         <th scope="col" data-sortable="true">Creation date</th>
                         <th scope="col" data-sortable="true">Deadline</th>
                         <th scope="col" data-filter-control="select" data-field="completion">Completed</th>
@@ -35,9 +38,12 @@
                     <#list assignments as assignment>
                         <tr>
                             <td>${assignment.title}</td>
+                            <#if role?? && role == "TEACHER">
                             <td>${assignment.student.name} ${assignment.student.surname}</td>
                             <td>${assignment.student.group.name}</td>
+                            <#else>
                             <td>${assignment.teacher.name} ${assignment.teacher.surname}</td>
+                            </#if>
                             <td>${assignment.creationDate}</td>
                             <td>${assignment.deadline}</td>
                             <td>

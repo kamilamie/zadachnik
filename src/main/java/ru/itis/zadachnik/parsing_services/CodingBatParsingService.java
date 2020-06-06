@@ -27,7 +27,7 @@ public class CodingBatParsingService {
     @Autowired
     private ProblemsRepository problemsRepository;
 
-    public void getProblems(){
+    public void getProblems() {
         try {
             getProblemsListByLanguage(PROG_LANG_JAVA);
             getProblemsListByLanguage(PROG_LANG_PYTHON);
@@ -38,7 +38,7 @@ public class CodingBatParsingService {
 
     private void getProblemsListByLanguage(ProgrammingLanguage lang) throws IOException {
         Document categoriesPage = Jsoup.connect(BASE_URL + lang).get();
-            List<Element> categoriesLinks = categoriesPage.select("a[href^='/" + lang + "/']");
+        List<Element> categoriesLinks = categoriesPage.select("a[href^='/" + lang + "/']");
 
         for (Element c : categoriesLinks) {
             String category = c.attr("href");
@@ -69,21 +69,21 @@ public class CodingBatParsingService {
                 .build();
     }
 
-    private List<Topic> fillTopics(String category, String text){
+    private List<Topic> fillTopics(String category, String text) {
         List<Topic> topics = TextAnalyzer.detectTopics(category);
         topics.addAll(TextAnalyzer.detectTopics(text));
-        if (topics.isEmpty()){
+        if (topics.isEmpty()) {
             topics.add(Topic.BASIC);
         }
         return topics.stream().distinct().collect(Collectors.toList());
     }
 
-    private Difficulty fillDifficulty(String category){
-        if (category.contains("1")){
+    private Difficulty fillDifficulty(String category) {
+        if (category.contains("1")) {
             return Difficulty.EASY;
-        } else if (category.contains("2")){
+        } else if (category.contains("2")) {
             return Difficulty.MEDIUM;
-        } else if (category.contains("3")){
+        } else if (category.contains("3")) {
             return Difficulty.HARD;
         }
         return Difficulty.EASY;

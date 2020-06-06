@@ -40,8 +40,8 @@
                                    placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <select class="form-control" id="group" name="group">
-                                <option selected>Select group...</option>
+                            <select class="form-control" id="group" name="group" required>
+                                <option>Select group...</option>
                                 <#list groups as group>
                                     <option value="${group.name}">${group.name}</option>
                                 </#list>

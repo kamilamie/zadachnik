@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
 
-@RunWith( SpringJUnit4ClassRunner.class )
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -63,7 +63,6 @@ public class LeetCodeParsingTest {
 //        getProblemsByTopic("sort");
 //        getProblemsByTopic("recursion");
 //        getProblemsByTopic("graph");
-
     }
 
     public void getProblemsByTopic(String topic) {
@@ -76,8 +75,8 @@ public class LeetCodeParsingTest {
         fillProblems(problemLinks, topic);
     }
 
-    public void fillProblems(List<String> path, String topic) {
-        for (String s : path) {
+    public void fillProblems(List<String> paths, String topic) {
+        for (String s : paths) {
             driver.get(s);
             WebElement pTextElement = driver.findElement(By.cssSelector("div.content__u3I1"));
             WebElement pDifficulty = driver.findElement(By.cssSelector("div[diff]"));
